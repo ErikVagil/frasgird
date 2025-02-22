@@ -5,9 +5,13 @@ public class Colony {
   public int Water { get; private set; }
   public int PowerSurplus { get; private set; }
   public int Population { get; private set; }
+  public int CurrentTick { get; private set; }
 
   private Dictionary<Building, int> buildings = new ();
+  public delegate void ColonyUpdate();
+  private ColonyUpdate onUpdate;
   public Colony() {
+    this.CurrentTick = 0;
     this.Food = 0;
     this.Water = 0;
     this.Population = 100;
@@ -24,5 +28,13 @@ public class Colony {
     }
 
     this.PowerSurplus -= building.PowerConsumption;
+  }
+
+  public void NextTick() {
+    CurrentTick++;
+    onUpdate?.Invoke();
+  }
+  public void SubscribeToUpdates(ColonyUpdate callback) {
+    onUpdate += callback;
   }
 }
