@@ -5,6 +5,9 @@ public class Building {
     Name = name;
     PowerConsumption = powerConsumption;
   }
+  public virtual void OnTick() {
+    // nothing
+  }
 }
 
 
