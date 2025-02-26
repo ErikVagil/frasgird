@@ -6,14 +6,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MeshRenderer mr = GetComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
-        Material mat = mr.material;
+        Material material = meshRenderer.material;
 
-        Vector2 offset = mat.mainTextureOffset;
+        Vector2 offset = material.mainTextureOffset;
 
         offset.x += Time.deltaTime / 25f;
 
-        mat.mainTextureOffset = offset;
+        // material.mainTextureOffset = offset;
     }
 }
