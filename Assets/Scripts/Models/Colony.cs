@@ -10,8 +10,10 @@ public class Colony {
   public delegate void DisplayMessage(string message);
   private ColonyUpdate onUpdate;
   public DisplayMessage displayMessage;
+  public ColonyMap Map { get; private set; }
   public Colony() {
     this.CurrentTick = 0;
+    Map = new ColonyMap();
     ModifyStockpile(Goods.Food, 20);
     ModifyStockpile(Goods.Water, 20);
     this.Population = 100;
