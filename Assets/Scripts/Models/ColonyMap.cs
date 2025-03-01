@@ -6,7 +6,7 @@ public class ColonyMap {
   public int NumPlots(int ring) => plots[ring].Count;
   public ColonyMap() {
     plots = new ();
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 2; i++) {
       AddRing();
     }
   }

@@ -9,22 +9,23 @@ public class MouseController : MonoBehaviour {
     }
   }
   void Update() {
-  // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-  RaycastHit raycastHit;
-  Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-  if (Physics.Raycast(ray, out raycastHit, 100f) && raycastHit.collider != null) {
-    BuildingPlotScript plot = raycastHit.collider.gameObject.GetComponent<BuildingPlotScript>();
-    if (hover != null) {
-      hover.Unhover();
-    }
-    hover = plot;
-    hover.Hover();
-  } else {
+    // Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + " " + Input.mousePosition);
     if (hover != null) {
       hover.Unhover();
       hover = null;
     }
-  }
+    RaycastHit raycastHit;
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    if (Physics.Raycast(ray, out raycastHit, 300f) && raycastHit.collider != null) {
+      BuildingPlotScript plot = raycastHit.collider.gameObject.GetComponent<BuildingPlotScript>();
+      if (plot != null) {
+        hover = plot;
+        hover.Hover();
+      }
+    }
+    if (Input.GetMouseButtonDown(0) && hover != null) {
+      hover.BuildingPlot.Build(Buildings.Generator);
+    }
 
   }
 }
