@@ -24,7 +24,7 @@ public class MouseController : MonoBehaviour {
       }
     }
     if (Input.GetMouseButtonDown(0) && hover != null) {
-      hover.BuildingPlot.Build(Buildings.Generator);
+      Colony.Instance.Build(hover.BuildingPlot, Buildings.Generator);
     }
 
   }

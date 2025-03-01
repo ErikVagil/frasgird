@@ -17,10 +17,7 @@ public class ColonyMapController : MonoBehaviour {
     CreatePlot(Colony.Instance.Map.GetPlot(1, 3), 10, 20, false);
     CreatePlot(Colony.Instance.Map.GetPlot(1, 4), -10, 20, false);
     CreatePlot(Colony.Instance.Map.GetPlot(1, 5), 15, 5, true);
-    GameObject go = Instantiate(BuildingPrefab);
-    go.transform.position = new Vector3(5, 2.5f, 5);
-    go.transform.Rotate(new Vector3(0, 90, 0));
-    go.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+    
   }
   private void CreatePlot(BuildingPlot plot, int x, int z, bool rotate) {
     GameObject go = Instantiate(BuildingPlotPrefab);

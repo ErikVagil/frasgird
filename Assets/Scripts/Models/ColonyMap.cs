@@ -4,6 +4,13 @@ public class ColonyMap {
   private List<List<BuildingPlot>> plots;
   public int NumRings => plots.Count;
   public int NumPlots(int ring) => plots[ring].Count;
+  public IEnumerable<BuildingPlot> AllPlots { get {
+    foreach (var ring in plots) {
+      foreach (var plot in ring) {
+        yield return plot;
+      }
+    }
+  }}
   public ColonyMap() {
     plots = new ();
     for(int i = 0; i < 2; i++) {

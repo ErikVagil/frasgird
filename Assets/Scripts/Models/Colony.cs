@@ -19,7 +19,7 @@ public class Colony {
     this.Population = 100;
     this.PowerSurplus = 0;
 
-    Build(Buildings.Generator);
+    // Build(Buildings.Generator);
   }
 
   public int GetStockpile(Good good) {
@@ -38,11 +38,15 @@ public class Colony {
     }
   }
 
-  public void Build(Building building) {
+  public void Build(BuildingPlot plot, Building building) {
     if (PowerSurplus < building.PowerConsumption) {
       displayMessage?.Invoke("Not enough power.");
       return;
+    } else if (plot.Building != null) {
+      displayMessage?.Invoke("plot not empty");
+      return;
     }
+    plot.Build(building);
     if (!this.buildings.ContainsKey(building)) {
       this.buildings.Add(building, 1);
     } else {
@@ -87,10 +91,13 @@ public class Colony {
   }
 
   public void BuildingTick() {
-    foreach (var b in this.buildings) {
-      for (int i = 0; i < b.Value; i++) {
-        b.Key.OnTick();
-      }
+    // foreach (var b in this.buildings) {
+    //   for (int i = 0; i < b.Value; i++) {
+    //     b.Key.OnTick();
+    //   }
+    // }
+    foreach (var plot in Map.AllPlots) {
+      plot.Building?.OnTick();
     }
   }
 

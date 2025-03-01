@@ -26,7 +26,7 @@ public class ColonyUIController : MonoBehaviour {
     if (building == null) {
       Debug.LogError($"Building '{buildingName}' not found.");
     } else {
-      Colony.Instance.Build(building);
+      // Colony.Instance.Build(building);
     }
   }
   private void UpdateResources() {
