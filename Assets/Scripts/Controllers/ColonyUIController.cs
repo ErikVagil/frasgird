@@ -30,8 +30,8 @@ public class ColonyUIController : MonoBehaviour {
     }
   }
   private void UpdateResources() {
-    SetText("Resources/Food", $"Food: {Colony.Instance.GetStockpile(Resources.Food)}");
-    SetText("Resources/Water", $"Water: {Colony.Instance.GetStockpile(Resources.Water)}");
+    SetText("Resources/Food", $"Food: {Colony.Instance.GetStockpile(Goods.Food)}");
+    SetText("Resources/Water", $"Water: {Colony.Instance.GetStockpile(Goods.Water)}");
     SetText("Resources/Population", $"Population: {Colony.Instance.Population}");
     SetText("Resources/Power", $"Power: {Colony.Instance.PowerSurplus}");
   }

@@ -1,23 +1,23 @@
 using System.Collections.Generic;
 public class Factory : Building {
-  private List<(Resource resource, int amount)> inputs;
-  private List<(Resource resource, int amount)> outputs;
+  private List<(Good good, int amount)> inputs;
+  private List<(Good good, int amount)> outputs;
   public Factory( string name,
                   int powerConsumption,
-                  (Resource, int)[] inputs,
-                  (Resource, int)[] outputs) 
+                  (Good, int)[] inputs,
+                  (Good, int)[] outputs) 
   : base(name, powerConsumption) {
-    this.inputs = new (inputs ?? new (Resource, int)[] {});
-    this.outputs = new (outputs ?? new (Resource, int)[] {});
+    this.inputs = new (inputs ?? new (Good, int)[] {});
+    this.outputs = new (outputs ?? new (Good, int)[] {});
   }
 
   public override void OnTick() {
     foreach (var input in inputs) {
-      if (Colony.Instance.GetStockpile(input.resource) < input.amount) {
+      if (Colony.Instance.GetStockpile(input.good) < input.amount) {
         return;
       }
     }
-    inputs.ForEach(i => Colony.Instance.ModifyStockpile(i.resource, -i.amount));
-    outputs.ForEach(o => Colony.Instance.ModifyStockpile(o.resource, o.amount));
+    inputs.ForEach(i => Colony.Instance.ModifyStockpile(i.good, -i.amount));
+    outputs.ForEach(o => Colony.Instance.ModifyStockpile(o.good, o.amount));
   }
 }

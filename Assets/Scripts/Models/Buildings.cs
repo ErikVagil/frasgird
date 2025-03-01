@@ -9,12 +9,12 @@ public static class Buildings {
   public static readonly Building Farm = RegisterBuilding(
     new Factory("Farm",
                 2,
-                new [] { (Resources.Water, 2) },
-                new [] { (Resources.Food, 5) }));
+                new [] { (Goods.Water, 2) },
+                new [] { (Goods.Food, 5) }));
   public static readonly Building HydroRecycler = RegisterBuilding(
     new Factory("Hydro-Recycler",
                 3,
                 null,
-                new [] { (Resources.Water, 5) }));
+                new [] { (Goods.Water, 5) }));
   public static readonly Building Generator = RegisterBuilding(new Building("Generator", -5));
 }

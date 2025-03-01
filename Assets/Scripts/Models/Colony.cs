@@ -4,7 +4,7 @@ public class Colony {
   public int PowerSurplus { get; private set; }
   public int Population { get; private set; }
   public int CurrentTick { get; private set; }
-  private Dictionary<Resource, int> stockpiles = new ();
+  private Dictionary<Good, int> stockpiles = new ();
   private Dictionary<Building, int> buildings = new ();
   public delegate void ColonyUpdate();
   public delegate void DisplayMessage(string message);
@@ -12,27 +12,27 @@ public class Colony {
   public DisplayMessage displayMessage;
   public Colony() {
     this.CurrentTick = 0;
-    ModifyStockpile(Resources.Food, 20);
-    ModifyStockpile(Resources.Water, 20);
+    ModifyStockpile(Goods.Food, 20);
+    ModifyStockpile(Goods.Water, 20);
     this.Population = 100;
     this.PowerSurplus = 0;
 
     Build(Buildings.Generator);
   }
 
-  public int GetStockpile(Resource resource) {
-    if (!stockpiles.ContainsKey(resource)) {
+  public int GetStockpile(Good good) {
+    if (!stockpiles.ContainsKey(good)) {
       return 0;
     } else {
-      return stockpiles[resource];
+      return stockpiles[good];
     }
   }
 
-  public void ModifyStockpile(Resource resource, int amount) {
-    if (!stockpiles.ContainsKey(resource)) {
-      stockpiles.Add(resource, amount);
+  public void ModifyStockpile(Good good, int amount) {
+    if (!stockpiles.ContainsKey(good)) {
+      stockpiles.Add(good, amount);
     } else {
-      stockpiles[resource] += amount;
+      stockpiles[good] += amount;
     }
   }
 
@@ -63,19 +63,19 @@ public class Colony {
     int foodNeeded = Population / 10;
     int waterNeeded = Population / 10;
     bool malnourishment = false;
-    int food = GetStockpile(Resources.Food);
-    int water = GetStockpile(Resources.Water);
+    int food = GetStockpile(Goods.Food);
+    int water = GetStockpile(Goods.Water);
     if (food < foodNeeded) {
       malnourishment = true;
-      ModifyStockpile(Resources.Food, -food);
+      ModifyStockpile(Goods.Food, -food);
     } else {
-      ModifyStockpile(Resources.Food, -foodNeeded);
+      ModifyStockpile(Goods.Food, -foodNeeded);
     }
     if (water < waterNeeded) {
       malnourishment = true;
-      ModifyStockpile(Resources.Water, -water);
+      ModifyStockpile(Goods.Water, -water);
     } else {
-      ModifyStockpile(Resources.Water, -waterNeeded);
+      ModifyStockpile(Goods.Water, -waterNeeded);
     }
     if (malnourishment) {
       Population = (int)(0.95 * Population);

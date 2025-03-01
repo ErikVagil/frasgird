@@ -1,6 +1,6 @@
-public class Resource {
+public class Good {
   public string Name { get; private set; }
-  public Resource(string name) {
+  public Good(string name) {
     Name = name;
   }
 }
