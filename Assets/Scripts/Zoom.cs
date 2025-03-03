@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class CameraController : MonoBehaviour
     private Quaternion originalRotation;
     private Transform targetPlanet;
     private bool isFocusing = false;
+
+    public GameObject planetUI;
+    
 
     public float zoomSpeed = 2f; // Adjust for smoothness
     public float orbitDistance = 5f; // Distance from the planet
@@ -20,6 +24,7 @@ public class CameraController : MonoBehaviour
         // Save the original positions to save the overview position
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        planetUI.SetActive(false);
     }
 
     void Update()
@@ -55,6 +60,7 @@ public class CameraController : MonoBehaviour
     {
         targetPlanet = planet;
         isFocusing = true;
+        planetUI.SetActive(true);
 
         // Calculate new camera position (orbit around the planet)
         Vector3 targetPosition = planet.position + planet.forward * -orbitDistance;
@@ -67,6 +73,7 @@ public class CameraController : MonoBehaviour
     {
         isFocusing = false;
         targetPlanet = null;
+        planetUI.SetActive(false);
 
         // Smooth transition back to original position
         StartCoroutine(MoveCamera(originalPosition, originalRotation));

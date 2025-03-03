@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/ButtonStyle.uss?fileID=7433441132597879392&amp;guid=46496aba55463be45a3f638f5d20a30e&amp;type=3#ButtonStyle" />
+    <ui:Label text="Planet Name" style="align-self: center; align-items: center; justify-content: center; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); -unity-font-style: italic; font-size: 16px; color: rgb(255, 251, 69); -unity-text-align: upper-left;" />
+    <ui:Label text="Status: Open to Trade" class="planetInfoText" style="left: auto; height: 32px; width: 100%; flex-direction: column; -unity-text-align: upper-right;" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="Container" style="flex-grow: 1; justify-content: flex-end; align-self: auto; flex-direction: column;">
+            <ui:VisualElement name="BottomButtons" style="flex-grow: 0; flex-basis: 20%; align-items: center; justify-content: space-around; padding-left: 15%; padding-right: 15%; background-color: rgba(233, 205, 187, 0.2); border-top-width: 5px; border-top-color: rgb(0, 0, 0); flex-direction: row; width: auto; align-self: auto;">
+                <ui:Button text="Send" class="SendShipButton" />
+                <ui:Button text="Test" name="SendButton" class="SendShipButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
