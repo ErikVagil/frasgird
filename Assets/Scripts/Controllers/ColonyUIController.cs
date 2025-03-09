@@ -28,10 +28,26 @@ public class ColonyUIController : MonoBehaviour {
     GetVisualElement<Button>(plotUI, "BuildFarm").RegisterCallback((ClickEvent e) => onBuildBuilding("Farm"));
     GetVisualElement<Button>(plotUI, "BuildHydroRecycler").RegisterCallback((ClickEvent e) => onBuildBuilding("Hydro-Recycler"));
   }
+  private void UpdatePlotUI() {
+    var plot = MouseController.Instance.SelectedPlot;
+    if (plot == null) {
+      Debug.LogError("no plot selected");
+      return;
+    }
+    bool canBuild = plot.BuildingPlot.Building == null;
+    GetVisualElement<Button>(plotUI, "Demolish").SetEnabled(!canBuild);
+    GetVisualElement<Button>(plotUI, "BuildGenerator").SetEnabled(canBuild);
+    GetVisualElement<Button>(plotUI, "BuildFarm").SetEnabled(canBuild);
+    GetVisualElement<Button>(plotUI, "BuildHydroRecycler").SetEnabled(canBuild);
+    SetText(plotUI, "Building", canBuild ? "Empty" : plot.BuildingPlot.Building.Name);
+  }
   private void UpdateUI() {
     UpdateResources();
     // UpdateBuildings();
     SetText(colonyUI, "Tick", $"Tick: {Colony.Instance.CurrentTick}");
+    if (plotUI.activeSelf) {
+      UpdatePlotUI();
+    }
   }
   private void OnNextTickClick(ClickEvent e) {
     Colony.Instance.NextTick();
@@ -81,6 +97,7 @@ public class ColonyUIController : MonoBehaviour {
   public void ShowPlotMenu() {
     plotUI.SetActive(true);
     LinkPlotButtons();
+    UpdateUI();
   }
   public void HidePlotMenu() {
     plotUI.SetActive(false);

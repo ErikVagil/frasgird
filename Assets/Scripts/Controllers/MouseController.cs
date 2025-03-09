@@ -32,12 +32,12 @@ public class MouseController : MonoBehaviour {
     }
     if (Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null) {
       if (hover != null) {
-        ColonyUIController.Instance.ShowPlotMenu();
         if (selected != null) {
           selected.Select = false;
         }
         selected = hover;
         selected.Select = true;
+        ColonyUIController.Instance.ShowPlotMenu();
       } else {
         ColonyUIController.Instance.HidePlotMenu();
         if (selected != null) {
