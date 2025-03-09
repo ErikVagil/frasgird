@@ -15,4 +15,7 @@ public class BuildingPlot {
   public void SubscribeToOnBuild(OnBuild onBuild) {
     this.onBuild += onBuild;
   }
+  public void UnsubscribeToOnBuild(OnBuild onBuild) {
+    this.onBuild -= onBuild;
+  }
 }

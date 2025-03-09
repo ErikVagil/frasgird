@@ -1,17 +1,24 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 public class MouseController : MonoBehaviour {
   private BuildingPlotScript hover = null;
+  private BuildingPlotScript selected = null;
+  public BuildingPlotScript SelectedPlot {
+    get => selected;
+  }
   public static MouseController Instance { get; private set; }
   void OnEnable() {
     if (Instance == null) {
       Instance = this;
     }
+    hover = null;
+    selected = null;
   }
   void Update() {
     // Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + " " + Input.mousePosition);
     if (hover != null) {
-      hover.Unhover();
+      hover.Hover = false;
       hover = null;
     }
     RaycastHit raycastHit;
@@ -20,11 +27,24 @@ public class MouseController : MonoBehaviour {
       BuildingPlotScript plot = raycastHit.collider.gameObject.GetComponent<BuildingPlotScript>();
       if (plot != null) {
         hover = plot;
-        hover.Hover();
+        hover.Hover = true;
       }
     }
-    if (Input.GetMouseButtonDown(0) && hover != null) {
-      Colony.Instance.Build(hover.BuildingPlot, Buildings.Generator);
+    if (Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null) {
+      if (hover != null) {
+        ColonyUIController.Instance.ShowPlotMenu();
+        if (selected != null) {
+          selected.Select = false;
+        }
+        selected = hover;
+        selected.Select = true;
+      } else {
+        ColonyUIController.Instance.HidePlotMenu();
+        if (selected != null) {
+          selected.Select = false;
+        }
+        selected = null;
+      }
     }
 
   }

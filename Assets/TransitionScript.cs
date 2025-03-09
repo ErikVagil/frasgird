@@ -19,6 +19,8 @@ public class TransitionScript : MonoBehaviour
 
     public void LoadTransition()
     {
+        CleanupManager.Instance.Cleanup();
+
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (currentScene == 0)
         {
