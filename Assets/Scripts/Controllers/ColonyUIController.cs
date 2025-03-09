@@ -23,7 +23,7 @@ public class ColonyUIController : MonoBehaviour {
     GetVisualElement<Button>(colonyUI, "NextTick").RegisterCallback<ClickEvent>(OnNextTickClick);
   }
   private void LinkPlotButtons() {
-    GetVisualElement<Button>(plotUI, "Demolish").RegisterCallback((ClickEvent e) => {Debug.Log("HELLO");});
+    GetVisualElement<Button>(plotUI, "Demolish").RegisterCallback<ClickEvent>(Demolish);
     GetVisualElement<Button>(plotUI, "BuildGenerator").RegisterCallback((ClickEvent e) => { onBuildBuilding("Generator"); });
     GetVisualElement<Button>(plotUI, "BuildFarm").RegisterCallback((ClickEvent e) => onBuildBuilding("Farm"));
     GetVisualElement<Button>(plotUI, "BuildHydroRecycler").RegisterCallback((ClickEvent e) => onBuildBuilding("Hydro-Recycler"));
@@ -47,8 +47,15 @@ public class ColonyUIController : MonoBehaviour {
         return;
       }
       Colony.Instance.Build(plot.BuildingPlot, building);
-
     }
+  }
+  public void Demolish(ClickEvent e) {
+    var plot = MouseController.Instance.SelectedPlot;
+      if (plot == null) {
+        Debug.LogError("No Selected Plot");
+        return;
+      }
+      Colony.Instance.Demolish(plot.BuildingPlot);
   }
   private void UpdateResources() {
     SetText(colonyUI, "Food", $"Food: {Colony.Instance.GetStockpile(Goods.Food)}");

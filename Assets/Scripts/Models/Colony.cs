@@ -54,7 +54,21 @@ public class Colony {
     //   this.buildings[building]++;
     // }
 
-    this.PowerSurplus -= building.PowerConsumption;
+    PowerSurplus -= building.PowerConsumption;
+    onUpdate?.Invoke();
+  }
+
+  public void Demolish(BuildingPlot plot) {
+    if (plot.Building == null ) {
+      displayMessage?.Invoke("plot already empty");
+      return;
+    } else if (PowerSurplus + plot.Building.PowerConsumption < 0) {
+      displayMessage?.Invoke("would result in negative power");
+      return;
+    }
+
+    PowerSurplus += plot.Building.PowerConsumption;
+    plot.Demolish();
     onUpdate?.Invoke();
   }
 

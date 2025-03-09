@@ -49,22 +49,26 @@ public class BuildingPlotScript : MonoBehaviour {
   }
   private void OnBuild(Building building) {
     Debug.Log("onbuild");
-    if (buildingObject != null) {
+    if (buildingObject != null && building != null) {
       Debug.Log("already has go");
       return;
+    } else if (building == null) {
+      Destroy(buildingObject);
+      buildingObject = null;
+    } else {
+      Color color = Color.white;
+      if (building == Buildings.Generator) {
+        color = Color.yellow;
+      } else if (building == Buildings.HydroRecycler) {
+        color = Color.cyan;
+      } else if (building == Buildings.Farm) {
+        color = Color.green;
+      }
+      GameObject go = Instantiate(ColonyMapController.Instance.BuildingPrefab);
+      go.transform.position = new Vector3(gameObject.transform.position.x, go.transform.localScale.y / 2, gameObject.transform.position.z);
+      go.GetComponent<MeshRenderer>().material.SetColor("_Color", color);
+      buildingObject = go;
     }
-    Color color = Color.white;
-    if (building == Buildings.Generator) {
-      color = Color.yellow;
-    } else if (building == Buildings.HydroRecycler) {
-      color = Color.cyan;
-    } else if (building == Buildings.Farm) {
-      color = Color.green;
-    }
-    GameObject go = Instantiate(ColonyMapController.Instance.BuildingPrefab);
-    go.transform.position = new Vector3(gameObject.transform.position.x, go.transform.localScale.y / 2, gameObject.transform.position.z);
-    go.GetComponent<MeshRenderer>().material.SetColor("_Color", color);
-    buildingObject = go;
   }
   private void Cleanup() {
     if (buildingPlot != null) {
