@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 public class Colony {
   public static Colony Instance { get; set; } = new Colony();
   public int PowerSurplus { get; private set; }
   public int Population { get; private set; }
   public int CurrentTick { get; private set; }
   private Dictionary<Good, int> stockpiles = new ();
-  private Dictionary<Building, int> buildings = new ();
+  // private Dictionary<Building, int> buildings = new ();
   public delegate void ColonyUpdate();
   public delegate void DisplayMessage(string message);
   private ColonyUpdate onUpdate;
@@ -47,23 +48,37 @@ public class Colony {
       return;
     }
     plot.Build(building);
-    if (!this.buildings.ContainsKey(building)) {
-      this.buildings.Add(building, 1);
-    } else {
-      this.buildings[building]++;
-    }
+    // if (!this.buildings.ContainsKey(building)) {
+    //   this.buildings.Add(building, 1);
+    // } else {
+    //   this.buildings[building]++;
+    // }
 
-    this.PowerSurplus -= building.PowerConsumption;
+    PowerSurplus -= building.PowerConsumption;
     onUpdate?.Invoke();
   }
 
-  public int BuildingCount(Building building) {
-    if (!this.buildings.ContainsKey(building)) {
-      return 0;
-    } else {
-      return this.buildings[building];
+  public void Demolish(BuildingPlot plot) {
+    if (plot.Building == null ) {
+      displayMessage?.Invoke("plot already empty");
+      return;
+    } else if (PowerSurplus + plot.Building.PowerConsumption < 0) {
+      displayMessage?.Invoke("would result in negative power");
+      return;
     }
+
+    PowerSurplus += plot.Building.PowerConsumption;
+    plot.Demolish();
+    onUpdate?.Invoke();
   }
+
+  // public int BuildingCount(Building building) {
+  //   if (!this.buildings.ContainsKey(building)) {
+  //     return 0;
+  //   } else {
+  //     return this.buildings[building];
+  //   }
+  // }
 
   public void PopConsumption() {
     int foodNeeded = Population / 10;
@@ -97,6 +112,7 @@ public class Colony {
     //   }
     // }
     foreach (var plot in Map.AllPlots) {
+      displayMessage(plot.Building?.Name);
       plot.Building?.OnTick();
     }
   }
@@ -111,7 +127,13 @@ public class Colony {
   public void SubscribeToUpdates(ColonyUpdate callback) {
     onUpdate += callback;
   }
+  public void UnsubscribeToUpdates(ColonyUpdate callback) {
+    onUpdate -= callback;
+  }
   public void SubscribeToMessages(DisplayMessage callback) {
     displayMessage += callback;
+  }
+  public void UnsubscribeToMessages(DisplayMessage callback) {
+    displayMessage -= callback;
   }
 }

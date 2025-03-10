@@ -12,7 +12,14 @@ public class BuildingPlot {
     Building = building;
     onBuild?.Invoke(building);
   }
+  public void Demolish() {
+    Building = null;
+    onBuild?.Invoke(null);
+  }
   public void SubscribeToOnBuild(OnBuild onBuild) {
     this.onBuild += onBuild;
+  }
+  public void UnsubscribeToOnBuild(OnBuild onBuild) {
+    this.onBuild -= onBuild;
   }
 }
