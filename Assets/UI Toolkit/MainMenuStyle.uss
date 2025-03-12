@@ -1,0 +1,25 @@
+.header {
+    font-size: 100px;
+    border-top-left-radius: 83px;
+    border-top-right-radius: 83px;
+    border-bottom-right-radius: 83px;
+    border-bottom-left-radius: 83px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-text-align: upper-center;
+}
+
+.button {
+    font-size: 20px;
+    width: 220px;
+    height: 60px;
+    align-items: auto;
+    align-self: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 150px;
+}
