@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=8eb0cc0020fa16941bd8d08b8e8a31f7&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="container" style="flex-grow: 1;">
+        <engine:Label text="Frasgird" class="header" />
+        <engine:Button text="Start" name="StartGameButton" class="button" style="margin-top: 150px; background-color: rgb(103, 192, 83);" />
+        <engine:Button text="Settings" name="SettingsButton" class="button" style="background-color: rgb(115, 115, 241);" />
+        <engine:Button text="Quit" name="QuitButton" class="button" style="background-color: rgb(214, 72, 60);" />
+    </engine:VisualElement>
+</engine:UXML>
