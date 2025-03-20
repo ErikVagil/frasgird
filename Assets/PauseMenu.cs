@@ -7,6 +7,7 @@ using UnityEditor.Build;
 public class PauseMenu : MonoBehaviour
 {
 
+    // Document to reference from the inspector. (Pause menu GameObject)
     public UIDocument _document;
     private VisualElement _pauseMenu;
     private Button _resumeButton;
@@ -14,17 +15,23 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused = false;
     void Awake()
     {
+        // Get the UIDocument (I think this is the visual tree since we are using the names found in the uxml file)
         _document = GetComponent<UIDocument>();
+
+        // Assign all the buttons
         _pauseMenu = _document.rootVisualElement.Q<VisualElement>("PauseMenu");
         _resumeButton = _document.rootVisualElement.Q<Button>("ResumeButton");
         _quitButton = _document.rootVisualElement.Q<Button>("QuitButton");
 
+        // Register the event that will happen when the buttons get clicked
         _resumeButton.RegisterCallback<ClickEvent>(evt => ResumeGame());
         _quitButton.RegisterCallback<ClickEvent>(evt => QuitGame());
 
+        // Hide the pause menu when game is on going
         _pauseMenu.style.display = DisplayStyle.None;
     }
 
+    // When ESC key gets pressed
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -53,15 +60,20 @@ public class PauseMenu : MonoBehaviour
 
     private void QuitGame()
     {
-        // Quitting the game from the menu will make the time scale freeze so we have to unfreeze it when we quit
+        // Pausing the game will make the time scale freeze so we have to unfreeze it when we quit
         Time.timeScale = 1f;
+        // Load the Main Menu
         SceneManager.LoadScene("MainMenu");
     }
 
     private void ResumeGame()
     {
         isPaused = false;
+
+        // Unfreeze game when resumingg
         Time.timeScale = 1f;
+
+        // Hide the UI
         _pauseMenu.style.display = DisplayStyle.None;
     }
 }
