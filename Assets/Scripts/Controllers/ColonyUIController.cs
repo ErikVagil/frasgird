@@ -10,8 +10,8 @@ public class ColonyUIController : MonoBehaviour {
   public GameObject colonyUI;
   public GameObject plotUI;
   private List<string> goodsList;
-  private delegate void onOptionBuild();
-  private List<(string, onOptionBuild)> buildingOptionsList;
+  // private delegate void onOptionBuild();
+  private List<(string, Building)> buildingOptionsList;
   void OnEnable() {
     if (Instance == null) {
       Instance = this;
@@ -72,7 +72,18 @@ public class ColonyUIController : MonoBehaviour {
       Button b = el as Button;
       b.style.fontSize = fontSize;
       b.text = pair.Item1;
-      b.RegisterCallback((ClickEvent e) => pair.Item2());
+      if (pair.Item2 == null) {
+         b.RegisterCallback((ClickEvent e) => Demolish());
+      } else {
+        b.RegisterCallback((ClickEvent e) => onBuildBuilding(pair.Item2.Name));
+      }
+      
+      if (IsPlotMenuVisible()) {
+        BuildingPlot plot = MouseController.Instance.SelectedPlot.BuildingPlot;
+        if (!pair.Item2?.AdditionalRequirement.IsMet(plot) ?? false) {
+          b.SetEnabled(false);
+        }
+      }
     };
     listView.Rebuild();
   }
@@ -85,16 +96,18 @@ public class ColonyUIController : MonoBehaviour {
       Debug.LogError("no plot selected");
       return;
     }
-    bool canBuild = plot.BuildingPlot.Building == null;
-    SetText(plotUI, "Building", canBuild ? "Empty" : plot.BuildingPlot.Building.Name);
+    bool isEmpty = plot.BuildingPlot.Building == null;
+    SetText(plotUI, "Building", isEmpty ? "Empty" : plot.BuildingPlot.Building.Name);
 
     buildingOptionsList.Clear();
-    if (canBuild) {
-      foreach (Building building in Buildings.All) {
-        buildingOptionsList.Add(($"Build {building.Name}", () => onBuildBuilding(building.Name)));
+    if (!isEmpty) {
+      buildingOptionsList.Add(("Demolish", null));
+      
+    }
+    foreach (Building building in Buildings.All) {
+      if (building.CoreRequirement.IsMet(plot.BuildingPlot)) {
+        buildingOptionsList.Add(($"Build {building.Name}", building));
       }
-    } else {
-      buildingOptionsList.Add(("Demolish", Demolish));
     }
 
     GetVisualElement<ListView>(plotUI, "OptionsList").Rebuild();
