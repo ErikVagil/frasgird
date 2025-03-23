@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &149295411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 357796024}
   - component: {fileID: 357796026}
   - component: {fileID: 357796027}
+  - component: {fileID: 357796028}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -601,8 +602,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1441170f67ee9aa43869992515dae1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildingPlotPrefab: {fileID: 1144803146477139391, guid: c33e11c6e92192c44aabc603abf2d247, type: 3}
+--- !u!114 &357796028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357796023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60874da53628fee49bd6471608410515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   BuildingPrefab: {fileID: 9208190410241255579, guid: b295663328ea60748a0efeccb35a625d, type: 3}
+  BuildingPlotPrefab: {fileID: 1144803146477139391, guid: c33e11c6e92192c44aabc603abf2d247, type: 3}
+  FarmPrefab: {fileID: 919132149155446097, guid: 57eb97c9801004896aecd2dde35965e6, type: 3}
+  HydroPrefab: {fileID: 919132149155446097, guid: 574059cc52b264ba6bbe2a34c7ecbce7, type: 3}
+  PowerPrefab: {fileID: 919132149155446097, guid: e2550e582bf8a46729ab804a27b7edb3, type: 3}
+  HousingPrefab: {fileID: 919132149155446097, guid: 7de49a0aace0a41fc8cb7f3c00555e01, type: 3}
 --- !u!1 &368090436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &725274641
 MonoBehaviour:
   m_ObjectHideFlags: 0

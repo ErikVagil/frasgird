@@ -1,7 +1,5 @@
 using UnityEngine;
 public class ColonyMapController : MonoBehaviour {
-  public GameObject BuildingPlotPrefab;
-  public GameObject BuildingPrefab;
   public static ColonyMapController Instance { get; private set; }
   void OnEnable() {
     if (Instance == null) {
@@ -50,7 +48,7 @@ public class ColonyMapController : MonoBehaviour {
     }
   }
   private void CreatePlot(BuildingPlot plot, int x, int z, bool rotate) {
-    GameObject go = Instantiate(BuildingPlotPrefab);
+    GameObject go = Instantiate(ModelController.Instance.BuildingPlotPrefab);
     go.transform.position = new Vector3(x, 0, z);
     if (rotate) {
       go.transform.Rotate(0, 90, 0);
