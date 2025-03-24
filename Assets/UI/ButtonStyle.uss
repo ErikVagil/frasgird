@@ -1,18 +1,80 @@
-.SendShipButton {
-    color: rgb(104, 248, 88);
-    background-color: rgba(0, 0, 0, 0.26);
+.planetInfoText {
+    font-size: 12px;
+    -unity-text-align: upper-left;
+    white-space: normal;
+    align-items: auto;
+    justify-content: flex-start;
+    align-self: flex-end;
+    align-content: auto;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-color: rgb(226, 226, 226);
+    border-right-color: rgb(226, 226, 226);
+    border-top-color: rgb(226, 226, 226);
+    border-bottom-color: rgb(226, 226, 226);
+    background-color: rgb(185, 185, 185);
+    -unity-background-image-tint-color: rgba(173, 156, 97, 0);
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
+}
+
+.planetName {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-color: rgb(209, 209, 209);
+    border-right-color: rgb(209, 209, 209);
+    border-top-color: rgb(209, 209, 209);
+    border-bottom-color: rgb(209, 209, 209);
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-color: rgb(178, 178, 178);
+    align-items: auto;
+    align-self: center;
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
+    font-size: 17px;
+}
+
+.optionButton {
+    color: rgb(0, 0, 0);
+    background-color: rgb(200, 200, 200);
     width: 100px;
     height: 40px;
-    -unity-font-style: normal;
+    -unity-font-style: bold;
     -unity-text-align: upper-center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-}
-
-.planetInfoText {
-    font-size: 16px;
-    -unity-text-align: upper-right;
-    white-space: normal;
+    border-left-color: rgb(238, 238, 238);
+    border-right-color: rgb(238, 238, 238);
+    border-top-color: rgb(238, 238, 238);
+    border-bottom-color: rgb(238, 238, 238);
+    font-size: 12px;
 }
