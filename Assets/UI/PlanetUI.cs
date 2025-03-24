@@ -17,7 +17,8 @@ public class PlanetUI : MonoBehaviour
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         Label planetName = root.Q<Label>("planetName");
         planetName.text = currentPlanet.name;
-        Label status = root.Q<Label>("planetInfo");
+        Label planetInfo = root.Q<Label>("planetInfo");
+        planetInfo.text = currentPlanet.GetComponent<Planet>().GetDescription();
         Button sendButton = root.Q<Button>("sendButton");
         Button backButton = root.Q<Button>("backButton");
 
