@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BuildingPlotScript : MonoBehaviour {
@@ -56,17 +57,20 @@ public class BuildingPlotScript : MonoBehaviour {
       Destroy(buildingObject);
       buildingObject = null;
     } else {
-      Color color = Color.white;
+      GameObject prefab;
       if (building == Buildings.Generator) {
-        color = Color.yellow;
+        prefab = ModelController.Instance.PowerPrefab;
       } else if (building == Buildings.HydroRecycler) {
-        color = Color.cyan;
+        prefab = ModelController.Instance.HydroPrefab;
       } else if (building == Buildings.Farm) {
-        color = Color.green;
+        prefab = ModelController.Instance.FarmPrefab;
+      } else {
+        prefab = ModelController.Instance.HousingPrefab;
       }
-      GameObject go = Instantiate(ColonyMapController.Instance.BuildingPrefab);
+      GameObject go = Instantiate(prefab);
+      go.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
       go.transform.position = new Vector3(gameObject.transform.position.x, go.transform.localScale.y / 2, gameObject.transform.position.z);
-      go.GetComponent<MeshRenderer>().material.SetColor("_Color", color);
+      // go.GetComponent<MeshRenderer>().material.SetColor("_Color", color);
       buildingObject = go;
     }
   }

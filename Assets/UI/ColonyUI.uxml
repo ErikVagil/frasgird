@@ -1,12 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement style="flex-grow: 1; height: 327px; width: 113px; align-self: stretch; flex-direction: column; background-color: rgb(255, 255, 255);">
-        <engine:Label text="Population: ?&#10;" name="Population" style="height: 26px; width: 136px;" />
-        <engine:Label text="Power: ?&#10;" name="Power" style="height: 26px; width: 136px;" />
-        <engine:Label text="Food: ?&#10;" name="Food" style="height: 26px; width: 136px; -unity-text-align: upper-left;" />
-        <engine:Label text="Water: ?&#10;" name="Water" style="height: 26px; width: 136px;" />
-        <engine:VisualElement style="flex-grow: 1; justify-content: flex-end;">
-            <engine:Label text="Turn: 0" name="Tick" style="-unity-text-align: upper-center;" />
-            <engine:Button text="Next Tick" name="NextTick" />
+    <engine:VisualElement name="Panel" style="flex-grow: 1; height: 100%; width: 15%; align-self: stretch; flex-direction: column; background-color: rgb(255, 255, 255); min-width: 15%; max-width: 25%; flex-basis: auto; flex-wrap: wrap;">
+        <engine:Label text="Population: ?&#10;" name="Population" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
+        <engine:Label text="Power: ?&#10;" name="Power" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
+        <engine:ListView name="GoodsList" virtualization-method="FixedHeight" style="height: 60%; -unity-text-align: middle-left;" />
+        <engine:VisualElement style="flex-grow: 1; justify-content: flex-end; min-height: auto; height: 20%; flex-direction: column; align-items: stretch; max-height: 20%; -unity-text-align: upper-left;">
+            <engine:Label text="Turn: 0" name="Tick" style="-unity-text-align: middle-center; height: 50%; min-height: 50%;" />
+            <engine:Button text="Next Tick" name="NextTick" style="height: 50%; min-height: 50%;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
