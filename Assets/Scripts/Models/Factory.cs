@@ -4,9 +4,11 @@ public class Factory : Building {
   private List<(Good good, int amount)> outputs;
   public Factory( string name,
                   int powerConsumption,
+                  BuildingRequirement coreRequirement,
+                  BuildingRequirement additionalRequirement,
                   (Good, int)[] inputs,
                   (Good, int)[] outputs) 
-  : base(name, powerConsumption) {
+  : base(name, powerConsumption, coreRequirement, additionalRequirement) {
     this.inputs = new (inputs ?? new (Good, int)[] {});
     this.outputs = new (outputs ?? new (Good, int)[] {});
   }

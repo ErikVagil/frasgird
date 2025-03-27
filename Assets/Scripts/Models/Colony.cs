@@ -40,19 +40,16 @@ public class Colony {
   }
 
   public void Build(BuildingPlot plot, Building building) {
-    if (PowerSurplus < building.PowerConsumption) {
+    if (PowerSurplus + (plot.Building?.PowerConsumption ?? 0) < building.PowerConsumption) {
       displayMessage?.Invoke("Not enough power.");
       return;
-    } else if (plot.Building != null) {
-      displayMessage?.Invoke("plot not empty");
-      return;
+    }
+    
+    if (plot.Building != null) {
+      // displayMessage?.Invoke("plot not empty");
+      Demolish(plot);
     }
     plot.Build(building);
-    // if (!this.buildings.ContainsKey(building)) {
-    //   this.buildings.Add(building, 1);
-    // } else {
-    //   this.buildings[building]++;
-    // }
 
     PowerSurplus -= building.PowerConsumption;
     onUpdate?.Invoke();
@@ -62,10 +59,10 @@ public class Colony {
     if (plot.Building == null ) {
       displayMessage?.Invoke("plot already empty");
       return;
-    } else if (PowerSurplus + plot.Building.PowerConsumption < 0) {
+    } /* else if (PowerSurplus + plot.Building.PowerConsumption < 0) {
       displayMessage?.Invoke("would result in negative power");
       return;
-    }
+    } */
 
     PowerSurplus += plot.Building.PowerConsumption;
     plot.Demolish();
