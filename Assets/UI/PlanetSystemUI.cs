@@ -1,24 +1,24 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlanetUI : MonoBehaviour
+public class PlanetSystemUI : MonoBehaviour
 {
 
-    private  GameObject currentPlanet; // holds the associated planet
+    private  GameObject currentPlanetSystem; // holds the associated planet
     
 
-    public void SetPlanet(GameObject planet)
+    public void SetPlanet(GameObject planetSystem)
     {
-        currentPlanet = planet;
+        this.currentPlanetSystem = planetSystem;
     }
 
     private void OnEnable()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         Label planetName = root.Q<Label>("planetName");
-        planetName.text = currentPlanet.name;
+        planetName.text = currentPlanetSystem.name;
         Label planetInfo = root.Q<Label>("planetInfo");
-        planetInfo.text = currentPlanet.GetComponent<Planet>().GetDescription();
+        planetInfo.text = currentPlanetSystem.GetComponent<PlanetSystem>().GetDescription();
         Button sendButton = root.Q<Button>("sendButton");
         Button backButton = root.Q<Button>("backButton");
 

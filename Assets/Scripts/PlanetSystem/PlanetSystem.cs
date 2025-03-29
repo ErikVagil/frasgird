@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Planet : MonoBehaviour{
+public class PlanetSystem : MonoBehaviour {
     // The distance from a reference point (e.g., in kilometers, light-years, etc.)
     public int distance;
     
