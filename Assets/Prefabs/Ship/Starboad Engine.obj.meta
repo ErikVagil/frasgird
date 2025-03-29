@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a0881a3ebcd5460c90a38b2491b9e2b
+guid: 17e01cbac816242ae858cd08cc87d26c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ShipMat
-    second: {fileID: 2100000, guid: 3c604dd897999481bba62cbc3b7e4869, type: 2}
+      name: Body53Mat
+    second: {fileID: 2100000, guid: 8da9eedd48ae4405482caa730be88154, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
