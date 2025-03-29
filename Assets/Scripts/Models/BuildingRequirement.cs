@@ -4,7 +4,7 @@ using System.Linq;
 public abstract class BuildingRequirement {
   public abstract bool IsMet(BuildingPlot plot);
   public static BuildingRequirement None { get; private set; } = new FunctionalRequirement((BuildingPlot plot) => true);
-  public static BuildingRequirement IsEmpty { get; private set; } = new FunctionalRequirement((BuildingPlot plot) => plot.Building == null);
+  public static BuildingRequirement IsEmpty { get; private set; } = new BaseBuilding("Empty Plot");
   public class BaseBuilding : BuildingRequirement {
     private string RequiredBuilding { get; set; }
     public BaseBuilding(string required) {
@@ -23,6 +23,17 @@ public abstract class BuildingRequirement {
 
     public override bool IsMet(BuildingPlot plot) {
       return requirements.Any(x => x.IsMet(plot));
+    }
+  }
+
+  public class Not : BuildingRequirement {
+    private BuildingRequirement requirement;
+    public Not(BuildingRequirement requirement) {
+      this.requirement = requirement;
+    }
+
+    public override bool IsMet(BuildingPlot plot) {
+      return !requirement.IsMet(plot);
     }
   }
 
