@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 336468484}
   - component: {fileID: 336468483}
   - component: {fileID: 336468482}
+  - component: {fileID: 336468486}
   m_Layer: 0
   m_Name: Green System
   m_TagString: Planet
@@ -528,6 +529,24 @@ Transform:
   - {fileID: 2128420061}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 16.813, y: 0, z: 10.248}
+--- !u!114 &336468486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336468481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &568083205
 GameObject:
   m_ObjectHideFlags: 0
@@ -10687,6 +10706,7 @@ GameObject:
   - component: {fileID: 1581511223}
   - component: {fileID: 1581511222}
   - component: {fileID: 1581511221}
+  - component: {fileID: 1581511225}
   m_Layer: 0
   m_Name: Yellow System
   m_TagString: Planet
@@ -10786,6 +10806,24 @@ Transform:
   - {fileID: 2142398244}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 12.682, y: 0, z: -17.332}
+--- !u!114 &1581511225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581511220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &1637517742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10796,13 +10834,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1637517744}
   - component: {fileID: 1637517743}
+  - component: {fileID: 1637517745}
   m_Layer: 5
   m_Name: PlanetUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1637517743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10837,6 +10876,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637517745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637517742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f619dc3b1cf244a8f9e682d6e69e6a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724387656
 GameObject:
   m_ObjectHideFlags: 0
@@ -11487,6 +11538,7 @@ GameObject:
   - component: {fileID: 2129388506}
   - component: {fileID: 2129388505}
   - component: {fileID: 2129388504}
+  - component: {fileID: 2129388508}
   m_Layer: 0
   m_Name: Red System
   m_TagString: Planet
@@ -11585,6 +11637,24 @@ Transform:
   - {fileID: 1844172049}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 13.097, y: 0, z: -10.135}
+--- !u!114 &2129388508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129388503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &2142398243
 GameObject:
   m_ObjectHideFlags: 0
@@ -11770,3 +11840,4 @@ SceneRoots:
   - {fileID: 1637517744}
   - {fileID: 327273675}
   - {fileID: 1074808413}
+  - {fileID: 2463027108380227762}
