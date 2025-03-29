@@ -46,8 +46,7 @@ public class Colony {
     }
     
     if (plot.Building != null) {
-      // displayMessage?.Invoke("plot not empty");
-      Demolish(plot);
+      DemolishLogic(plot);
     }
     plot.Build(building);
 
@@ -55,27 +54,14 @@ public class Colony {
     onUpdate?.Invoke();
   }
 
-  public void Demolish(BuildingPlot plot) {
+  private void DemolishLogic(BuildingPlot plot) {
     if (plot.Building == null ) {
       displayMessage?.Invoke("plot already empty");
       return;
-    } /* else if (PowerSurplus + plot.Building.PowerConsumption < 0) {
-      displayMessage?.Invoke("would result in negative power");
-      return;
-    } */
+    }
 
     PowerSurplus += plot.Building.PowerConsumption;
-    plot.Demolish();
-    onUpdate?.Invoke();
   }
-
-  // public int BuildingCount(Building building) {
-  //   if (!this.buildings.ContainsKey(building)) {
-  //     return 0;
-  //   } else {
-  //     return this.buildings[building];
-  //   }
-  // }
 
   public void PopConsumption() {
     int foodNeeded = Population / 10;
@@ -103,11 +89,6 @@ public class Colony {
   }
 
   public void BuildingTick() {
-    // foreach (var b in this.buildings) {
-    //   for (int i = 0; i < b.Value; i++) {
-    //     b.Key.OnTick();
-    //   }
-    // }
     foreach (var plot in Map.AllPlots) {
       displayMessage(plot.Building?.Name);
       plot.Building?.OnTick();

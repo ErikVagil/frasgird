@@ -6,9 +6,10 @@ public class Factory : Building {
                   int powerConsumption,
                   BuildingRequirement coreRequirement,
                   BuildingRequirement additionalRequirement,
+                  int buildingLevel,
                   (Good, int)[] inputs,
                   (Good, int)[] outputs) 
-  : base(name, powerConsumption, coreRequirement, additionalRequirement) {
+  : base(name, powerConsumption, coreRequirement, additionalRequirement, buildingLevel) {
     this.inputs = new (inputs ?? new (Good, int)[] {});
     this.outputs = new (outputs ?? new (Good, int)[] {});
   }

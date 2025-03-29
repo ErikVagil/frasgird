@@ -72,11 +72,7 @@ public class ColonyUIController : MonoBehaviour {
       Button b = el as Button;
       b.style.fontSize = fontSize;
       b.text = pair.Item1;
-      if (pair.Item2 == null) {
-         b.RegisterCallback((ClickEvent e) => Demolish());
-      } else {
-        b.RegisterCallback((ClickEvent e) => onBuildBuilding(pair.Item2.Name));
-      }
+      b.RegisterCallback((ClickEvent e) => onBuildBuilding(pair.Item2.Name));
       
       if (IsPlotMenuVisible()) {
         BuildingPlot plot = MouseController.Instance.SelectedPlot.BuildingPlot;
@@ -96,17 +92,20 @@ public class ColonyUIController : MonoBehaviour {
       Debug.LogError("no plot selected");
       return;
     }
-    bool isEmpty = plot.BuildingPlot.Building == null;
-    SetText(plotUI, "Building", isEmpty ? "Empty" : plot.BuildingPlot.Building.Name);
+    // bool isEmpty = plot.BuildingPlot.Building == null;
+    // SetText(plotUI, "Building", isEmpty ? "Empty" : plot.BuildingPlot.Building.Name);
+    SetText(plotUI, "Building", plot.BuildingPlot.Building.Name);
 
     buildingOptionsList.Clear();
-    if (!isEmpty) {
-      buildingOptionsList.Add(("Demolish", null));
+    // if (!isEmpty) {
+    //   buildingOptionsList.Add(("Demolish", null));
       
-    }
+    // }
     foreach (Building building in Buildings.All) {
       if (building.CoreRequirement.IsMet(plot.BuildingPlot)) {
-        buildingOptionsList.Add(($"Build {building.Name}", building));
+        buildingOptionsList.Add((
+          Building.GetBuildDescription(plot.BuildingPlot.Building, building),
+          building));
       }
     }
 
@@ -136,14 +135,14 @@ public class ColonyUIController : MonoBehaviour {
       Colony.Instance.Build(plot.BuildingPlot, building);
     }
   }
-  public void Demolish() {
-    var plot = MouseController.Instance.SelectedPlot;
-      if (plot == null) {
-        Debug.LogError("No Selected Plot");
-        return;
-      }
-      Colony.Instance.Demolish(plot.BuildingPlot);
-  }
+  // public void Demolish() {
+  //   var plot = MouseController.Instance.SelectedPlot;
+  //     if (plot == null) {
+  //       Debug.LogError("No Selected Plot");
+  //       return;
+  //     }
+  //     Colony.Instance.DemolishLogic(plot.BuildingPlot);
+  // }
   private void UpdateResources() {
     SetText(colonyUI, "Population", $"Population: {Colony.Instance.Population}");
     SetText(colonyUI, "Power", $"Power: {Colony.Instance.PowerSurplus}");

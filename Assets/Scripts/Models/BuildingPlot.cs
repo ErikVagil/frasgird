@@ -7,15 +7,16 @@ public class BuildingPlot {
   public BuildingPlot(int ring, int plotNumber) {
     Ring = ring;
     PlotNumber = plotNumber;
+    Build(Buildings.Empty);
   }
   public void Build(Building building) {
     Building = building;
     onBuild?.Invoke(building);
   }
-  public void Demolish() {
-    Building = null;
-    onBuild?.Invoke(null);
-  }
+  // public void Demolish() {
+  //   Building = null;
+  //   onBuild?.Invoke(null);
+  // }
   public void SubscribeToOnBuild(OnBuild onBuild) {
     this.onBuild += onBuild;
   }
