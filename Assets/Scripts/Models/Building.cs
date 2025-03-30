@@ -1,15 +1,27 @@
+using System.Collections.Generic;
+using System.Linq;
+
 public class Building {
   public string Name { get; private set; }
   public int PowerConsumption { get; private set; }
   public BuildingRequirement CoreRequirement;
   public BuildingRequirement AdditionalRequirement;
   public int BuildingLevel { get; private set; }
-  public Building(string name, int powerConsumption, BuildingRequirement coreRequirement, BuildingRequirement additionalRequirement, int buildingLevel) {
+  private (Good good, int amount)[] buildingCosts;
+  public (Good good, int amount)[] BuildingCosts => buildingCosts.ToArray();
+  public Building(string name,
+                  int powerConsumption,
+                  (Good good, int amount)[] buildingCosts,
+                  BuildingRequirement coreRequirement,
+                  BuildingRequirement additionalRequirement,
+                  int buildingLevel) {
     Name = name;
     PowerConsumption = powerConsumption;
+    this.buildingCosts = buildingCosts ?? new (Good, int)[] {};
     CoreRequirement = coreRequirement;
     AdditionalRequirement = new BuildingRequirement.All(
       new BuildingRequirement.PowerRequirement(powerConsumption),
+      new BuildingRequirement.BuildingCost(buildingCosts),
       additionalRequirement
     );
     BuildingLevel = buildingLevel;

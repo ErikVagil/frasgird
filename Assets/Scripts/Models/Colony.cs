@@ -17,6 +17,7 @@ public class Colony {
     Map = new ColonyMap();
     ModifyStockpile(Goods.Food, 20);
     ModifyStockpile(Goods.Water, 20);
+    ModifyStockpile(Goods.Steel, 50);
     this.Population = 100;
     this.PowerSurplus = 0;
 
@@ -44,6 +45,12 @@ public class Colony {
       displayMessage?.Invoke("Not enough power.");
       return;
     }
+    foreach (var pair in building.BuildingCosts) {
+      if (GetStockpile(pair.good) < pair.amount) {
+        displayMessage?.Invoke($"Not enough {pair.good.Name}.");
+        return;
+      }
+    }
     
     if (plot.Building != null) {
       DemolishLogic(plot);
@@ -51,6 +58,10 @@ public class Colony {
     plot.Build(building);
 
     PowerSurplus -= building.PowerConsumption;
+    foreach (var pair in building.BuildingCosts) {
+      ModifyStockpile(pair.good, -pair.amount);
+    }
+
     onUpdate?.Invoke();
   }
 

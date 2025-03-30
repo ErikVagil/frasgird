@@ -9,6 +9,7 @@ public class ColonyUIController : MonoBehaviour {
   // public GameObject canvas;
   public GameObject colonyUI;
   public GameObject plotUI;
+  public GameObject tooltip;
   private List<string> goodsList;
   // private delegate void onOptionBuild();
   private List<(string, Building)> buildingOptionsList;
@@ -41,6 +42,16 @@ public class ColonyUIController : MonoBehaviour {
     GetVisualElement<VisualElement>(colonyUI, "Panel").RegisterCallback<GeometryChangedEvent>(ScaleColonyUI);
     GetVisualElement<VisualElement>(plotUI, "Panel").RegisterCallback<GeometryChangedEvent>(ScalePlotUI);
     UpdateUI();
+
+    // ShowTooltip();
+  }
+  void Update()
+  {
+    if (IsTooltipVisible()) {
+      var pos = RuntimePanelUtils.ScreenToPanel(GetVisualElement<VisualElement>(tooltip, "Panel").panel, Input.mousePosition);
+      pos.y = Screen.height - pos.y;
+      GetVisualElement<VisualElement>(tooltip, "Panel").transform.position = pos;
+    }
   }
   private void ScaleColonyUI(GeometryChangedEvent e) {
     int fontSize = (int)(e.newRect.height * 0.05);
@@ -73,6 +84,8 @@ public class ColonyUIController : MonoBehaviour {
       b.style.fontSize = fontSize;
       b.text = pair.Item1;
       b.RegisterCallback((ClickEvent e) => onBuildBuilding(pair.Item2.Name));
+      b.RegisterCallback((MouseOverEvent e) => ShowTooltip(pair.Item2));
+      b.RegisterCallback((MouseOutEvent e) => HideTooltip());
       
       if (IsPlotMenuVisible()) {
         BuildingPlot plot = MouseController.Instance.SelectedPlot.BuildingPlot;
@@ -123,6 +136,7 @@ public class ColonyUIController : MonoBehaviour {
     Colony.Instance.NextTick();
   }
   public void onBuildBuilding(string buildingName) {
+    HideTooltip();
     Building building = Buildings.All.FirstOrDefault(b => b.Name == buildingName);
     if (building == null) {
       Debug.LogError($"Building '{buildingName}' not found.");
@@ -166,5 +180,44 @@ public class ColonyUIController : MonoBehaviour {
   }
   private void Cleanup() {
     Colony.Instance.UnsubscribeToUpdates(UpdateUI);
+  }
+
+  private void ShowTooltip(Building target) {
+    var plot = MouseController.Instance.SelectedPlot;
+    if (plot == null) {
+      Debug.LogError("no plot selected");
+      return;
+    }
+
+    // tooltip.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
+    tooltip.SetActive(true);
+    var panel = GetVisualElement<VisualElement>(tooltip, "Panel");
+    var reqs = target.AdditionalRequirement.Requirements(plot.BuildingPlot);
+    if (!reqs.Any()) {
+      HideTooltip();
+      return;
+    }
+    foreach ((string text, bool met) in reqs) {
+      Label label = new Label();
+      panel.Add(label);
+      label.text = $"<b>{text}</b>";
+      Color darkGreen = Color.green;
+      darkGreen.r *= 0.9f;
+      darkGreen.g *= 0.9f;
+      darkGreen.b *= 0.9f;
+      label.style.color = met ? darkGreen : Color.red;
+      label.style.fontSize = 25;
+      label.style.height = 30;
+    }
+  }
+
+  private void HideTooltip() {
+    // tooltip.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+    tooltip.SetActive(false);
+  }
+
+  private bool IsTooltipVisible() {
+    // return tooltip.GetComponent<UIDocument>().rootVisualElement.style.display == DisplayStyle.Flex;
+    return tooltip.activeSelf;
   }
 }

@@ -12,4 +12,5 @@ public static class Goods {
   public static Good Food = RegisterGood(new Good("Food"));
   public static Good Water = RegisterGood(new Good("Water"));
   // public static Good Silichips = RegisterGood(new Good("Silichips"));
+  public static Good Steel = RegisterGood(new Good("Steel"));
 }
