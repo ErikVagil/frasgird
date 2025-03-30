@@ -33,11 +33,12 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isFocusing) // Left mouse click
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.CompareTag("Planet"))
                 {
-                    FocusOnPlanet(hit.collider.transform);
+                    FocusOnPlanet(hit.collider);
                 }
             }
         }
@@ -56,10 +57,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void FocusOnPlanet(Transform planet)
-    {
+    void FocusOnPlanet(Collider collider)
+    {   
+        Transform planet = collider.transform;
         targetPlanet = planet;
         isFocusing = true;
+        // Set the clicked planet in the PlanetUI
+        planetUI.GetComponent<PlanetSystemUI>().SetPlanet(collider.gameObject);
         planetUI.SetActive(true);
 
         // Calculate new camera position (orbit around the planet)
@@ -69,7 +73,7 @@ public class CameraController : MonoBehaviour
         StartCoroutine(MoveCamera(targetPosition, Quaternion.LookRotation(planet.position - targetPosition)));
     }
 
-    void ReturnToGalaxyView()
+    public void ReturnToGalaxyView()
     {
         isFocusing = false;
         targetPlanet = null;

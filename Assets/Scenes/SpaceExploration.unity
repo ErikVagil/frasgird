@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 336468484}
   - component: {fileID: 336468483}
   - component: {fileID: 336468482}
+  - component: {fileID: 336468486}
   m_Layer: 0
   m_Name: Green System
   m_TagString: Planet
@@ -528,6 +529,24 @@ Transform:
   - {fileID: 2128420061}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 16.813, y: 0, z: 10.248}
+--- !u!114 &336468486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336468481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &568083205
 GameObject:
   m_ObjectHideFlags: 0
@@ -10310,6 +10329,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 6
+--- !u!1 &1074808410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1074808413}
+  - component: {fileID: 1074808412}
+  - component: {fileID: 1074808411}
+  m_Layer: 5
+  m_Name: PauseMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1074808411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074808410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81344a15f188edf46a589ecef8f380fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _document: {fileID: 1074808412}
+--- !u!114 &1074808412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074808410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 00fae28d980ee834299d8e3b059fe246, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: caa4e5dafaa987a40ada7279b97aea49, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &1074808413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074808410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089778047
 GameObject:
   m_ObjectHideFlags: 0
@@ -10622,6 +10706,7 @@ GameObject:
   - component: {fileID: 1581511223}
   - component: {fileID: 1581511222}
   - component: {fileID: 1581511221}
+  - component: {fileID: 1581511225}
   m_Layer: 0
   m_Name: Yellow System
   m_TagString: Planet
@@ -10721,6 +10806,24 @@ Transform:
   - {fileID: 2142398244}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 12.682, y: 0, z: -17.332}
+--- !u!114 &1581511225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581511220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &1637517742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10731,13 +10834,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1637517744}
   - component: {fileID: 1637517743}
+  - component: {fileID: 1637517745}
   m_Layer: 5
   m_Name: PlanetUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1637517743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10772,6 +10876,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637517745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637517742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f619dc3b1cf244a8f9e682d6e69e6a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724387656
 GameObject:
   m_ObjectHideFlags: 0
@@ -10830,7 +10946,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73ae3ec68d9494f51b33971b506e386e, type: 2}
+  - {fileID: 2100000, guid: 432b046dbb04948028c354f88bf2f870, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11422,6 +11538,7 @@ GameObject:
   - component: {fileID: 2129388506}
   - component: {fileID: 2129388505}
   - component: {fileID: 2129388504}
+  - component: {fileID: 2129388508}
   m_Layer: 0
   m_Name: Red System
   m_TagString: Planet
@@ -11473,7 +11590,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64380c0134b89486c9f43fbae7cabbaf, type: 2}
+  - {fileID: 2100000, guid: 432b046dbb04948028c354f88bf2f870, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11520,6 +11637,24 @@ Transform:
   - {fileID: 1844172049}
   m_Father: {fileID: 2003248706}
   m_LocalEulerAnglesHint: {x: 13.097, y: 0, z: -10.135}
+--- !u!114 &2129388508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129388503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e269a0b515044d1486d65315cfee12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  difficultyLevel: 0
+  foodRequired: 0
+  waterRequired: 0
+  minimumCrewSize: 0
+  open: 0
 --- !u!1 &2142398243
 GameObject:
   m_ObjectHideFlags: 0
@@ -11638,6 +11773,63 @@ MonoBehaviour:
   orbitAngle: 10
   rotationSpeed: 16
   startingAngle: 5
+--- !u!1001 &2463027108380227762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.666
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6192334
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.61923355
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.34139407
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.341394
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72564300109023458, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 57.737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048303085583742573, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
+      propertyPath: m_Name
+      value: Ship
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb706f5fc43b843d8b9da83309b791fd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11647,3 +11839,5 @@ SceneRoots:
   - {fileID: 2003248706}
   - {fileID: 1637517744}
   - {fileID: 327273675}
+  - {fileID: 1074808413}
+  - {fileID: 2463027108380227762}
