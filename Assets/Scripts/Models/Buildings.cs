@@ -14,6 +14,7 @@ public static class Buildings {
   public static readonly Building Empty = RegisterBuilding(
     new Building("Empty Plot",
       0,
+      null,
       new BuildingRequirement.Not(new BuildingRequirement.BaseBuilding("Empty Plot")),
       BuildingRequirement.None,
       0
@@ -23,6 +24,7 @@ public static class Buildings {
   public static readonly Building Farm = RegisterBuilding(
     new Factory("Farm",
                 2,
+                null,
                 BuildingRequirement.IsEmpty,
                 BuildingRequirement.None,
                 1,
@@ -31,6 +33,7 @@ public static class Buildings {
   public static readonly Building HydroRecycler = RegisterBuilding(
     new Factory("Hydro-Recycler",
                 3,
+                null,
                 BuildingRequirement.IsEmpty,
                 BuildingRequirement.None,
                 1,
@@ -39,6 +42,7 @@ public static class Buildings {
   public static readonly Building Generator = RegisterBuilding(
     new Building( "Generator",
                   -5,
+                  new [] { (Goods.Steel, 5) },
                   new BuildingRequirement.Any(
                     BuildingRequirement.IsEmpty,
                     new BuildingRequirement.BaseBuilding("Steam Turbine")
@@ -49,6 +53,7 @@ public static class Buildings {
   public static readonly Building SteamTurbine = RegisterBuilding(
     new Factory("Steam Turbine",
                 -10,
+                new [] { (Goods.Steel, 3) },
                 new BuildingRequirement.BaseBuilding("Generator"),
                 BuildingRequirement.None,
                 2,
