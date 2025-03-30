@@ -50,6 +50,7 @@ public class ColonyUIController : MonoBehaviour {
     if (IsTooltipVisible()) {
       var pos = RuntimePanelUtils.ScreenToPanel(GetVisualElement<VisualElement>(tooltip, "Panel").panel, Input.mousePosition);
       pos.y = Screen.height - pos.y;
+      pos.x += 25;
       GetVisualElement<VisualElement>(tooltip, "Panel").transform.position = pos;
     }
   }
@@ -202,9 +203,9 @@ public class ColonyUIController : MonoBehaviour {
       panel.Add(label);
       label.text = $"<b>{text}</b>";
       Color darkGreen = Color.green;
-      darkGreen.r *= 0.9f;
-      darkGreen.g *= 0.9f;
-      darkGreen.b *= 0.9f;
+      darkGreen.r *= 0.8f;
+      darkGreen.g *= 0.8f;
+      darkGreen.b *= 0.8f;
       label.style.color = met ? darkGreen : Color.red;
       label.style.fontSize = 25;
       label.style.height = 30;
