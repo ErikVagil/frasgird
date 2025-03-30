@@ -1,9 +1,20 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+/// <summary>
+/// Could probably be named something more descriptive. This class
+/// controls the selection of BuildingPlot script objects. Access
+/// its instance member to get the currently selected plot.
+/// </summary>
 public class MouseController : MonoBehaviour {
   private BuildingPlotScript hover = null;
   private BuildingPlotScript selected = null;
+
+  /// <summary>
+  /// The current BuildingPlot gameobject selected.
+  /// MAY BE NULL
+  /// </summary>
   public BuildingPlotScript SelectedPlot {
     get => selected;
   }
