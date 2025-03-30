@@ -4,15 +4,25 @@ using System.Linq;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
+
+/// <summary>
+/// This class isn't the cleanest. It interfaces with the
+/// Unity UI documents in the scene, handling button presses and
+/// label updates.
+/// </summary>
 public class ColonyUIController : MonoBehaviour {
   public static ColonyUIController Instance { get; private set; }
-  // public GameObject canvas;
   public GameObject colonyUI;
   public GameObject plotUI;
   public GameObject tooltip;
+
+  // These lists are for the ListView elements
   private List<string> goodsList;
-  // private delegate void onOptionBuild();
   private List<(string, Building)> buildingOptionsList;
+
+  /// <summary>
+  /// Sets up the various ui documents
+  /// </summary>
   void OnEnable() {
     if (Instance == null) {
       Instance = this;
@@ -42,9 +52,11 @@ public class ColonyUIController : MonoBehaviour {
     GetVisualElement<VisualElement>(colonyUI, "Panel").RegisterCallback<GeometryChangedEvent>(ScaleColonyUI);
     GetVisualElement<VisualElement>(plotUI, "Panel").RegisterCallback<GeometryChangedEvent>(ScalePlotUI);
     UpdateUI();
-
-    // ShowTooltip();
   }
+  /// <summary>
+  /// Moves the tooltip to the current mouse location so long as
+  /// it's currently visible
+  /// </summary>
   void Update()
   {
     if (IsTooltipVisible()) {
@@ -54,6 +66,12 @@ public class ColonyUIController : MonoBehaviour {
       GetVisualElement<VisualElement>(tooltip, "Panel").transform.position = pos;
     }
   }
+  /// <summary>
+  /// Updates the colony ui once it finishes calculating how large
+  /// it's supposed to be relative to the screen. Sets up the
+  /// ListView logic for goods.
+  /// </summary>
+  /// <param name="e">Contains the updated size of the colonyUI panel.</param>
   private void ScaleColonyUI(GeometryChangedEvent e) {
     int fontSize = (int)(e.newRect.height * 0.05);
     GetVisualElement<Label>(colonyUI, "Population").style.fontSize = fontSize;
@@ -71,6 +89,12 @@ public class ColonyUIController : MonoBehaviour {
     };
     listView.RefreshItems();
   }
+  /// <summary>
+  /// Updates the plot ui once it finishes calculating how large
+  /// it's supposed to be relative to the screen. Uses a ListView
+  /// to organize the buttons for construction and destruction of buildings.
+  /// </summary>
+  /// <param name="e">Contains the updated size of the plotUI panel.</param>
   private void ScalePlotUI(GeometryChangedEvent e) {
     int fontSize = (int)(e.newRect.height * 0.04);
     GetVisualElement<Label>(plotUI, "Building").style.fontSize = fontSize;
@@ -100,21 +124,20 @@ public class ColonyUIController : MonoBehaviour {
   private void LinkButtons() {
     GetVisualElement<Button>(colonyUI, "NextTick").RegisterCallback<ClickEvent>(OnNextTickClick);
   }
+
+  /// <summary>
+  /// Constructs the list of buildings that can be built/destroyed,
+  /// and sets the plotUI to show them.
+  /// </summary>
   private void UpdatePlotUI() {
     var plot = MouseController.Instance.SelectedPlot;
     if (plot == null) {
       Debug.LogError("no plot selected");
       return;
     }
-    // bool isEmpty = plot.BuildingPlot.Building == null;
-    // SetText(plotUI, "Building", isEmpty ? "Empty" : plot.BuildingPlot.Building.Name);
     SetText(plotUI, "Building", plot.BuildingPlot.Building.Name);
 
     buildingOptionsList.Clear();
-    // if (!isEmpty) {
-    //   buildingOptionsList.Add(("Demolish", null));
-      
-    // }
     foreach (Building building in Buildings.All) {
       if (building.CoreRequirement.IsMet(plot.BuildingPlot)) {
         buildingOptionsList.Add((
@@ -125,6 +148,11 @@ public class ColonyUIController : MonoBehaviour {
 
     GetVisualElement<ListView>(plotUI, "OptionsList").Rebuild();
   }
+
+  /// <summary>
+  /// Updates the various UIs to display information; is called in this
+  /// class and also used to subscribe to Colony to display changes in information.
+  /// </summary>
   private void UpdateUI() {
     UpdateResources();
     SetText(colonyUI, "Tick", $"Tick: {Colony.Instance.CurrentTick}");
@@ -133,9 +161,20 @@ public class ColonyUIController : MonoBehaviour {
     }
     GetVisualElement<ListView>(colonyUI, "GoodsList").RefreshItems();
   }
+
+  /// <summary>
+  /// Called by the button advancing the colony tick.
+  /// </summary>
+  /// <param name="e">ClickEvent; ignored</param>
   private void OnNextTickClick(ClickEvent e) {
     Colony.Instance.NextTick();
   }
+
+  /// <summary>
+  /// Called by the buttons in the plotUI that construct and
+  /// destroy buildings.
+  /// </summary>
+  /// <param name="buildingName">The name of the Building to build, in Buildings.cs.</param>
   public void onBuildBuilding(string buildingName) {
     HideTooltip();
     Building building = Buildings.All.FirstOrDefault(b => b.Name == buildingName);
@@ -150,22 +189,34 @@ public class ColonyUIController : MonoBehaviour {
       Colony.Instance.Build(plot.BuildingPlot, building);
     }
   }
-  // public void Demolish() {
-  //   var plot = MouseController.Instance.SelectedPlot;
-  //     if (plot == null) {
-  //       Debug.LogError("No Selected Plot");
-  //       return;
-  //     }
-  //     Colony.Instance.DemolishLogic(plot.BuildingPlot);
-  // }
+
+  /// <summary>
+  /// Updates the labels for resources that aren't Goods
+  /// (population and power for now)
+  /// </summary>
   private void UpdateResources() {
     SetText(colonyUI, "Population", $"Population: {Colony.Instance.Population}");
     SetText(colonyUI, "Power", $"Power: {Colony.Instance.PowerSurplus}");
   }
 
+  /// <summary>
+  /// Shorthand for setting a label's text. Probably not necessary,
+  /// but was more necessary in earlier code.
+  /// </summary>
+  /// <param name="ui">The UI Document to search in.</param>
+  /// <param name="name">The name of the Label in the UI Document tree.</param>
+  /// <param name="text">The text to set the label to.</param>
   private void SetText(GameObject ui, string name, string text) {
     GetVisualElement<Label>(ui, name).text = text;
   }
+
+  /// <summary>
+  /// Returns the visual element requested from the UI Document indicated.
+  /// </summary>
+  /// <typeparam name="E">The type of VisualElement you expect.</typeparam>
+  /// <param name="ui">The UI Document to search in.</param>
+  /// <param name="name">The name of the VisualElement to return.</param>
+  /// <returns></returns>
   private E GetVisualElement<E>(GameObject ui, string name) where E : VisualElement {
     return ui.GetComponent<UIDocument>().rootVisualElement.Query<E>(name: name).First();
   }
@@ -179,6 +230,11 @@ public class ColonyUIController : MonoBehaviour {
   private bool IsPlotMenuVisible() {
     return plotUI.GetComponent<UIDocument>().rootVisualElement.style.display == DisplayStyle.Flex;
   }
+
+  /// <summary>
+  /// disconnects from subscription events; used for when the mode changes
+  /// from colony to planet
+  /// </summary>
   private void Cleanup() {
     Colony.Instance.UnsubscribeToUpdates(UpdateUI);
   }
@@ -190,7 +246,6 @@ public class ColonyUIController : MonoBehaviour {
       return;
     }
 
-    // tooltip.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     tooltip.SetActive(true);
     var panel = GetVisualElement<VisualElement>(tooltip, "Panel");
     var reqs = target.AdditionalRequirement.Requirements(plot.BuildingPlot);
@@ -213,12 +268,10 @@ public class ColonyUIController : MonoBehaviour {
   }
 
   private void HideTooltip() {
-    // tooltip.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     tooltip.SetActive(false);
   }
 
   private bool IsTooltipVisible() {
-    // return tooltip.GetComponent<UIDocument>().rootVisualElement.style.display == DisplayStyle.Flex;
     return tooltip.activeSelf;
   }
 }

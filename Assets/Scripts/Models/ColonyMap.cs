@@ -1,5 +1,10 @@
 using System.Collections.Generic;
 using System;
+
+/// <summary>
+/// Created as a subcomponent of Colony to manage the BuildingPlot
+/// objects.
+/// </summary>
 public class ColonyMap {
   private List<List<BuildingPlot>> plots;
   public int NumRings => plots.Count;
