@@ -38,9 +38,7 @@ public class CameraController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Planet"))
                 {
-                    // Set the clicked planet in the PlanetUI
-                    planetUI.GetComponent<PlanetUI>().SetPlanet(hit.collider.gameObject);
-                    FocusOnPlanet(hit.collider.transform);
+                    FocusOnPlanet(hit.collider);
                 }
             }
         }
@@ -59,10 +57,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void FocusOnPlanet(Transform planet)
-    {
+    void FocusOnPlanet(Collider collider)
+    {   
+        Transform planet = collider.transform;
         targetPlanet = planet;
         isFocusing = true;
+        // Set the clicked planet in the PlanetUI
+        planetUI.GetComponent<PlanetSystemUI>().SetPlanet(collider.gameObject);
         planetUI.SetActive(true);
 
         // Calculate new camera position (orbit around the planet)
