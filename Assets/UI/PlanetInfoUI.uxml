@@ -1,13 +1,25 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/ButtonStyle.uss?fileID=7433441132597879392&amp;guid=46496aba55463be45a3f638f5d20a30e&amp;type=3#ButtonStyle" />
     <ui:VisualElement style="flex-grow: 1; flex-direction: column;">
-        <ui:Label text="Planet Name" name="planetName" class="planetName" />
+        <ui:VisualElement name="playerResources" style="flex-grow: 1; flex-direction: row; height: 0; align-self: auto; align-items: center; background-color: rgba(224, 162, 130, 0.12);">
+            <ui:Label text="Label" name="playerPopulation" class="playerResource" />
+            <ui:Label text="Label" name="playerPower" class="playerResource" />
+            <ui:Label text="Label" name="playerWater" class="playerResource" />
+            <ui:Label text="Label" name="playerFood" class="playerResource" />
+        </ui:VisualElement>
+        <ui:Label text="Planet Name" name="planetName" class="planetName" style="height: 76px; width: 347px;">
+            <ui:GroupBox />
+        </ui:Label>
         <ui:Label text="Status: Open to Trade" name="planetInfo" class="planetInfoText" />
-        <ui:VisualElement name="Container" style="flex-grow: 1; justify-content: flex-end; align-self: auto; flex-direction: column; margin-top: -1px; margin-right: -1px; margin-bottom: -1px; margin-left: -1px;">
-            <ui:VisualElement name="BottomButtons" style="flex-grow: 0; flex-basis: 20%; align-items: center; justify-content: space-around; padding-left: 15%; padding-right: 15%; background-color: rgba(233, 205, 187, 0.2); border-top-width: 0; border-top-color: rgb(0, 0, 0); flex-direction: row; width: auto; align-self: auto;">
-                <ui:Button text="Back" name="backButton" class="SendShipButton optionButton" />
-                <ui:Button text="Send" name="SendButton" class="SendShipButton optionButton" />
-            </ui:VisualElement>
+        <ui:VisualElement name="expeditionSupply" enabled="true" class="expeditionBox" style="flex-grow: 1; visibility: visible;">
+            <ui:IntegerField label="Food Supply" value="0" enabled="true" password="false" class="supplyInput" />
+            <ui:IntegerField label="Water Supply" value="0" name="IntegerField" hide-placeholder-on-focus="false" focusable="true" class="supplyInput" />
+            <ui:IntegerField label="Crew Size" value="0" password="false" is-delayed="false" class="supplyInput" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;" />
+        <ui:VisualElement name="BottomButtons" focusable="false" style="flex-grow: 0; flex-basis: 20%; align-items: flex-start; justify-content: space-around; padding-left: 0; padding-right: 0; background-color: rgba(233, 205, 187, 0.2); border-top-width: 0; border-top-color: rgb(0, 0, 0); flex-direction: row; width: auto; align-self: stretch; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-bottom: 0; height: 15%;">
+            <ui:Button text="Back" name="backButton" selectable="true" class="SendShipButton optionButton" />
+            <ui:Button text="Send" name="sendButton" class="SendShipButton optionButton" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

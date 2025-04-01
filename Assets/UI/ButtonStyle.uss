@@ -1,5 +1,5 @@
 .planetInfoText {
-    font-size: 12px;
+    font-size: 25px;
     -unity-text-align: upper-left;
     white-space: normal;
     align-items: auto;
@@ -7,7 +7,7 @@
     align-self: flex-end;
     align-content: auto;
     margin-top: 10px;
-    margin-right: 10px;
+    margin-right: 50px;
     margin-bottom: 10px;
     margin-left: 10px;
     border-top-width: 3px;
@@ -24,12 +24,12 @@
     border-bottom-color: rgb(226, 226, 226);
     background-color: rgb(185, 185, 185);
     -unity-background-image-tint-color: rgba(173, 156, 97, 0);
-    padding-top: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
     -unity-font-style: bold;
-    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
 }
 
 .planetName {
@@ -49,25 +49,26 @@
     border-right-color: rgb(209, 209, 209);
     border-top-color: rgb(209, 209, 209);
     border-bottom-color: rgb(209, 209, 209);
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
     background-color: rgb(178, 178, 178);
     align-items: auto;
     align-self: center;
     -unity-font-style: bold;
-    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
-    font-size: 17px;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
+    font-size: 40px;
+    -unity-text-align: upper-center;
 }
 
 .optionButton {
     color: rgb(0, 0, 0);
     background-color: rgb(200, 200, 200);
-    width: 100px;
-    height: 40px;
+    width: 150px;
+    height: 70px;
     -unity-font-style: bold;
-    -unity-text-align: upper-center;
+    -unity-text-align: middle-center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -76,5 +77,54 @@
     border-right-color: rgb(238, 238, 238);
     border-top-color: rgb(238, 238, 238);
     border-bottom-color: rgb(238, 238, 238);
-    font-size: 12px;
+    font-size: 30px;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
+    cursor: initial;
+    justify-content: flex-start;
+    align-items: auto;
+    align-self: center;
+}
+
+.expeditionBox {
+    background-color: rgb(185, 185, 185);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(226, 226, 226);
+    border-right-color: rgb(226, 226, 226);
+    border-top-color: rgb(226, 226, 226);
+    border-bottom-color: rgb(226, 226, 226);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-right: 50px;
+    align-self: flex-end;
+    align-items: stretch;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    align-content: flex-start;
+    visibility: visible;
+    display: none;
+    font-size: 25px;
+}
+
+.supplyInput {
+    -unity-font-style: bold;
+    font-size: 25px;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
+    visibility: visible;
+}
+
+.playerResource {
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
+    margin-right: 20px;
+    font-size: 30px;
 }

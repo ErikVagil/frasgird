@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
 
     public GameObject planetUI;
     
+    
 
     public float zoomSpeed = 2f; // Adjust for smoothness
     public float orbitDistance = 5f; // Distance from the planet
@@ -44,17 +45,17 @@ public class CameraController : MonoBehaviour
         }
 
         // Return to galaxy view if user presses Esc
-        if (Input.GetKeyDown(KeyCode.Escape) && isFocusing)
-        {
-            ReturnToGalaxyView();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape) && isFocusing)
+        // {
+        //     ReturnToGalaxyView();
+        // }
 
-        if (isFocusing && targetPlanet != null)
-        {
-            // Keep orbiting around the planet
-            // transform.RotateAround(targetPlanet.position, Vector3.up, rotationSpeed * Time.deltaTime);
-            transform.LookAt(targetPlanet);
-        }
+        // if (isFocusing && targetPlanet != null)
+        // {
+        //     // Keep orbiting around the planet
+        //     // transform.RotateAround(targetPlanet.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        //     // transform.LookAt(targetPlanet);
+        // }
     }
 
     void FocusOnPlanet(Collider collider)
@@ -62,8 +63,14 @@ public class CameraController : MonoBehaviour
         Transform planet = collider.transform;
         targetPlanet = planet;
         isFocusing = true;
+
         // Set the clicked planet in the PlanetUI
         planetUI.GetComponent<PlanetSystemUI>().SetPlanet(collider.gameObject);
+
+        // Set the camera controller in the PlanetUI
+        planetUI.GetComponent<PlanetSystemUI>().SetCameraController(this);
+
+        // Set the UI active
         planetUI.SetActive(true);
 
         // Calculate new camera position (orbit around the planet)
