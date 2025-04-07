@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:VisualElement name="Panel" style="flex-grow: 1; align-self: flex-end; background-color: rgb(255, 255, 255); width: 20%;">
         <engine:Label text="Empty" name="Building" style="font-size: 20px; -unity-text-align: middle-center; height: 15%;" />
-        <engine:ListView name="OptionsList" />
+        <engine:ListView name="OptionsList" style="-unity-text-align: upper-center;" />
     </engine:VisualElement>
 </engine:UXML>

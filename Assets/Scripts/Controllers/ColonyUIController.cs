@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using TMPro;
 
 /// <summary>
 /// This class isn't the cleanest. It interfaces with the
@@ -71,7 +72,7 @@ public class ColonyUIController : MonoBehaviour {
   /// </summary>
   /// <param name="e">Contains the updated size of the colonyUI panel.</param>
   private void ScaleColonyUI(GeometryChangedEvent e) {
-    int fontSize = (int)(e.newRect.height * 0.05);
+    int fontSize = (int)(e.newRect.height * 0.035);
     GetVisualElement<Label>(colonyUI, "Population").style.fontSize = fontSize;
     GetVisualElement<Label>(colonyUI, "Power").style.fontSize = fontSize;
     GetVisualElement<Label>(colonyUI, "Tick").style.fontSize = fontSize;
@@ -94,7 +95,7 @@ public class ColonyUIController : MonoBehaviour {
   /// </summary>
   /// <param name="e">Contains the updated size of the plotUI panel.</param>
   private void ScalePlotUI(GeometryChangedEvent e) {
-    int fontSize = (int)(e.newRect.height * 0.04);
+    int fontSize = (int)(e.newRect.height * 0.03);
     GetVisualElement<Label>(plotUI, "Building").style.fontSize = fontSize;
     var listView = GetVisualElement<ListView>(plotUI, "OptionsList");
     listView.fixedItemHeight = (int)(e.newRect.height * 0.1);
@@ -106,6 +107,8 @@ public class ColonyUIController : MonoBehaviour {
       Button b = el as Button;
       b.style.fontSize = fontSize;
       b.text = pair.Item1;
+      b.style.unityTextAlign = TextAnchor.MiddleCenter;
+      b.style.whiteSpace = WhiteSpace.Normal;
       b.RegisterCallback((ClickEvent e) => onBuildBuilding(pair.Item2.Name));
       b.RegisterCallback((MouseOverEvent e) => ShowTooltip(pair.Item2));
       b.RegisterCallback((MouseOutEvent e) => HideTooltip());
