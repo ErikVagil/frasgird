@@ -1,9 +1,7 @@
 using UnityEngine;
-using TMPro;
 using System.Linq;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 
 /// <summary>
 /// This class isn't the cleanest. It interfaces with the
@@ -233,7 +231,7 @@ public class ColonyUIController : MonoBehaviour {
 
   /// <summary>
   /// disconnects from subscription events; used for when the mode changes
-  /// from colony to planet
+  /// 
   /// </summary>
   private void Cleanup() {
     Colony.Instance.UnsubscribeToUpdates(UpdateUI);
