@@ -169,7 +169,6 @@ public class Colony {
   /// </summary>
   public void BuildingTick() {
     foreach (var plot in Map.AllPlots) {
-      displayMessage(plot.Building?.Name);
       plot.Building?.OnTick();
     }
   }

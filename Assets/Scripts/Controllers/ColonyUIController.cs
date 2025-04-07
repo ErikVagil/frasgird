@@ -14,6 +14,7 @@ public class ColonyUIController : MonoBehaviour {
   public GameObject colonyUI;
   public GameObject plotUI;
   public GameObject tooltip;
+  public StyleSheet uss;
 
   // These lists are for the ListView elements
   private List<string> goodsList;
@@ -85,6 +86,8 @@ public class ColonyUIController : MonoBehaviour {
       Label l = el as Label;
       l.style.fontSize = fontSize;
       l.text = $"{good.Name}: {Colony.Instance.GetStockpile(good)}";
+      l.AddToClassList("labelListView");
+      l.styleSheets.Add(uss);
     };
     listView.RefreshItems();
   }

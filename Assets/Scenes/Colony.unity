@@ -564,6 +564,7 @@ MonoBehaviour:
   colonyUI: {fileID: 2027460521}
   plotUI: {fileID: 149295410}
   tooltip: {fileID: 945257732}
+  uss: {fileID: 7433441132597879392, guid: 94122625c1caf3d499df3271118b0bb2, type: 3}
 --- !u!4 &357796025
 Transform:
   m_ObjectHideFlags: 0
