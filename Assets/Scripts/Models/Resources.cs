@@ -1,11 +1,14 @@
 using System.Collections.Generic;
-public static class Goods {
-  private static List<Good> allGoods = new ();
+public static class Goods
+{
+  private static List<Good> allGoods = new();
   public static IEnumerable<Good> All { get => allGoods; }
-  public static Good GetGoodFromID(int id) {
+  public static Good GetGoodFromID(int id)
+  {
     return allGoods[id];
   }
-  private static Good RegisterGood(Good good) {
+  private static Good RegisterGood(Good good)
+  {
     allGoods.Add(good);
     return good;
   }
