@@ -1,11 +1,12 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement name="Panel" style="flex-grow: 1; height: 100%; width: 15%; align-self: stretch; flex-direction: column; background-color: rgb(255, 255, 255); min-width: 15%; max-width: 25%; flex-basis: auto; flex-wrap: wrap;">
-        <engine:Label text="Population: ?&#10;" name="Population" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
-        <engine:Label text="Power: ?&#10;" name="Power" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
-        <engine:ListView name="GoodsList" virtualization-method="FixedHeight" style="height: 60%; -unity-text-align: middle-left;" />
+    <Style src="project://database/Assets/UI/ColonyUI.uss?fileID=7433441132597879392&amp;guid=79d46bc5e81b24e44be775753739baf0&amp;type=3#ColonyUI" />
+    <engine:VisualElement name="Panel" style="flex-grow: 1; height: 100%; width: 20%; align-self: stretch; flex-direction: column; background-color: rgba(255, 255, 255, 0); min-width: 15%; max-width: 25%; flex-basis: auto; flex-wrap: wrap; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&amp;guid=4e23f3325ed664079bc35c3134fe4eb1&amp;type=3#Alata-Regular&quot;);">
+        <engine:Label text="Population: ?&#10;" name="Population" class="infoText" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
+        <engine:Label text="Power: ?&#10;" name="Power" class="infoText" style="height: 10%; width: auto; font-size: 20px; -unity-text-align: middle-left;" />
+        <engine:ListView name="GoodsList" virtualization-method="FixedHeight" class="infoText" style="height: 60%; -unity-text-align: middle-left;" />
         <engine:VisualElement style="flex-grow: 1; justify-content: flex-end; min-height: auto; height: 20%; flex-direction: column; align-items: stretch; max-height: 20%; -unity-text-align: upper-left;">
-            <engine:Label text="Turn: 0" name="Tick" style="-unity-text-align: middle-center; height: 50%; min-height: 50%;" />
-            <engine:Button text="Next Tick" name="NextTick" style="height: 50%; min-height: 50%;" />
+            <engine:Label text="Turn: 0" name="Tick" class="infoText" style="-unity-text-align: middle-center; height: 50%; min-height: 50%;" />
+            <engine:Button text="Next Tick" name="NextTick" class="button" style="height: 50%; min-height: 50%;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
