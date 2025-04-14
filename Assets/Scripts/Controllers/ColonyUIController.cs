@@ -109,6 +109,7 @@ public class ColonyUIController : MonoBehaviour {
       var pair = buildingOptionsList[i];
       Button b = el as Button;
       b.style.fontSize = fontSize;
+      b.AddToClassList("plotBuildingOptionButton");
       b.text = pair.Item1;
       b.style.unityTextAlign = TextAnchor.MiddleCenter;
       b.style.whiteSpace = WhiteSpace.Normal;

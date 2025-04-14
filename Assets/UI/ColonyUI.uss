@@ -1,0 +1,45 @@
+.button {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    transition-property: scale;
+    transition-duration: 0.1s;
+}
+
+.infoText {
+    white-space: normal;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Alata-Regular.ttf?fileID=12800000&guid=4e23f3325ed664079bc35c3134fe4eb1&type=3#Alata-Regular");
+    text-shadow: 0 0 4px rgb(255, 255, 255);
+}
+
+.button:hover {
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+    transition-property: scale;
+}
+
+.plotBuildingOptionButton:hover {
+    transition-duration: 0.1s;
+    font-size: 115%;
+    background-color: rgb(226, 226, 226);
+    transition-property: font-size;
+}
+
+.plotBuildingOptionButton {
+    transition-duration: 0.1s;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
