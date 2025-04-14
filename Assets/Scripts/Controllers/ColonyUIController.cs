@@ -60,8 +60,9 @@ public class ColonyUIController : MonoBehaviour {
   void Update()
   {
     if (IsTooltipVisible()) {
-      var pos = RuntimePanelUtils.ScreenToPanel(GetVisualElement<VisualElement>(tooltip, "Panel").panel, Input.mousePosition);
-      pos.y = Screen.height - pos.y;
+      var pos = RuntimePanelUtils.ScreenToPanel(tooltip.GetComponent<UIDocument>().rootVisualElement.panel, Input.mousePosition);
+      var height = tooltip.GetComponent<UIDocument>().rootVisualElement.resolvedStyle.height;
+      pos.y = height - pos.y;
       pos.x += 25;
       GetVisualElement<VisualElement>(tooltip, "Panel").transform.position = pos;
     }
