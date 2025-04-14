@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 /// <summary>
 /// Created as a subcomponent of Colony to manage the BuildingPlot
@@ -40,5 +41,9 @@ public class ColonyMap {
     for (int i = 0; i < numPlots; i++) {
       plots[NumRings - 1].Add(new BuildingPlot(NumRings - 1, i));
     }
+  }
+
+  public bool isRingFilled(int ring) {
+    return plots[ring].All((bp) => bp.Building != Buildings.Empty);
   }
 }

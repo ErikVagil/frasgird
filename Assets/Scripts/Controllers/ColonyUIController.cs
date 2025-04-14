@@ -81,7 +81,9 @@ public class ColonyUIController : MonoBehaviour {
     var listView = GetVisualElement<ListView>(colonyUI, "GoodsList");
     listView.fixedItemHeight = (int)(e.newRect.height * 0.1);
     listView.bindItem = (el, i) => {
-      
+      if (i < 0) {
+        return;
+      }
       Good good = Goods.GetGoodFromID(i);
       Label l = el as Label;
       l.style.fontSize = fontSize;
@@ -258,7 +260,14 @@ public class ColonyUIController : MonoBehaviour {
       HideTooltip();
       return;
     }
+
+    int maxWidth = 0;
+    int labelHeight = 30;
+    int fontSize = 25;
     foreach ((string text, bool met) in reqs) {
+      if (text.Length > maxWidth) {
+        maxWidth = text.Length;
+      }
       Label label = new Label();
       panel.Add(label);
       label.text = $"<b>{text}</b>";
@@ -267,9 +276,12 @@ public class ColonyUIController : MonoBehaviour {
       darkGreen.g *= 0.8f;
       darkGreen.b *= 0.8f;
       label.style.color = met ? darkGreen : Color.red;
-      label.style.fontSize = 25;
-      label.style.height = 30;
+      label.style.fontSize = fontSize;
+      label.style.height = labelHeight;
     }
+
+    panel.style.height = labelHeight * reqs.Count() + 50;
+    panel.style.width = maxWidth * fontSize;
   }
 
   private void HideTooltip() {

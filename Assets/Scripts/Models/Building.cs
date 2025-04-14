@@ -61,6 +61,10 @@ public class Building {
     AdditionalRequirement = new BuildingRequirement.All(
       new BuildingRequirement.PowerRequirement(powerConsumption),
       new BuildingRequirement.BuildingCost(buildingCosts),
+      new BuildingRequirement.Any(
+        BuildingRequirement.FilledRingRequirement,
+        new BuildingRequirement.Not(BuildingRequirement.IsEmpty)
+      ),
       additionalRequirement
     );
     BuildingLevel = buildingLevel;

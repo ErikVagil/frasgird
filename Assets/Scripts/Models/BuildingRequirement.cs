@@ -35,6 +35,20 @@ public abstract class BuildingRequirement {
   public static BuildingRequirement IsEmpty { get; private set; } = new BaseBuilding("Empty Plot");
 
   /// <summary>
+  /// Requires every ring up until this ring to be filled with
+  /// buildings.
+  /// </summary>
+  public static BuildingRequirement FilledRingRequirement { get; private set;} = new FunctionalRequirement(
+    (BuildingPlot plot) => {
+    for (int i = 0; i < plot.Ring; i++) {
+        if (!Colony.Instance.Map.isRingFilled(i)) {
+          return false;
+        }
+      }
+      return true;
+  }, "Outer Ring");
+
+  /// <summary>
   /// BuildingRequirement that is met so long as the current
   /// building in the plot is the provided base building required.
   /// </summary>
@@ -68,7 +82,15 @@ public abstract class BuildingRequirement {
 
     public override IEnumerable<(string, bool)> Requirements(BuildingPlot plot)
     {
-      return requirements.Select(x => x.Requirements(plot)).Aggregate((x, y) => x.Concat(y)).Select(x => ($"OPTION {x.Item1}", !x.Item2));
+      return requirements
+              .Take(1)
+              .Select(x => x.Requirements(plot))
+              .Aggregate((x, y) => x.Concat(y))
+              .Select(x => ($"\t{x.Item1}", x.Item2))
+              .Concat(requirements.Skip(1)
+                      .Select(x => x.Requirements(plot))
+                      .Aggregate((x, y) => x.Concat(y))
+                      .Select(x => ($"OR\t{x.Item1}", x.Item2)));
     }
   }
 
