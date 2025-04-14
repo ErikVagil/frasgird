@@ -1,4 +1,9 @@
 using UnityEngine;
+
+/// <summary>
+/// Dynamically creates the BuildingPlot scripts and connects
+/// them to the Colony's BuildingPlot model objects.
+/// </summary>
 public class ColonyMapController : MonoBehaviour {
   public static ColonyMapController Instance { get; private set; }
   void OnEnable() {
@@ -7,6 +12,7 @@ public class ColonyMapController : MonoBehaviour {
     }
   }
   void Start() {
+    /*** Old code manually adding rings ***/
     // CreatePlot(Colony.Instance.Map.GetPlot(0, 0), 0, 0, false);
     // CreatePlot(Colony.Instance.Map.GetPlot(0, 1), 0, 10, false);
 
@@ -27,6 +33,10 @@ public class ColonyMapController : MonoBehaviour {
     // CreatePlot(Colony.Instance.Map.GetPlot(2, 7), 20, 30, false);
     // CreatePlot(Colony.Instance.Map.GetPlot(2, 8), 25, -5, true);
     // CreatePlot(Colony.Instance.Map.GetPlot(2, 9), 25, 15, true);
+
+    // Gross code that adds each ring.
+    // Because the center of each plot is used as the origin,
+    // and they rotate, it ends up looking really messy.
     for (int i = 0; i < Colony.Instance.Map.NumRings; i++) {
       int id = 0;
       for (int j = 0; j < 1 + i; j++) {
