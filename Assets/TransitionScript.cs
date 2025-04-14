@@ -21,13 +21,13 @@ public class TransitionScript : MonoBehaviour
         CleanupManager.Instance.Cleanup();
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        if (currentScene == 0)
+        if (currentScene == 1)
         {
-            StartCoroutine(LoadLevel(1));
+            StartCoroutine(LoadLevel(2));
         }
         else
         {
-            StartCoroutine(LoadLevel(0));
+            StartCoroutine(LoadLevel(1));
         }
     }
 

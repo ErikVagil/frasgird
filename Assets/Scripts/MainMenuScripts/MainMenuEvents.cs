@@ -63,7 +63,7 @@ public class MainMenuEvents : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         yield return null;
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }
