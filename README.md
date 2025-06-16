@@ -9,7 +9,7 @@
 - Davi Fernandes (Software Developer)
 - David Weatherford (Software Developer)
 - Andrew Jergensen (Graphic Designer)
-- 
+
 ![frasgird-org-chart](https://github.com/user-attachments/assets/3f7331f3-3b9e-412f-985b-13b9d325a1d2)
 
 ## Documentation
